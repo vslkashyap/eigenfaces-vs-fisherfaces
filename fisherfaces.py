@@ -22,10 +22,10 @@ Sw = np.empty(shape=pixelcount, dtype='float64')
 i, col = 0, 0
 
 for face in range(faces):
-        J = X[:, i:i + trainimgs].mean(axis=1)
-        Sb = Sb + trainimgs * np.dot(J - mean, (J - mean).transpose())
-        i += trainimgs
-        for k in range(trainimgs):
-            xi = X[:,col]
-            Sw = Sw + np.dot(xi - J, (xi - J).transpose())
-            col += 1
+    J = X[:, i:i + trainimgs].mean(axis=1)
+    Sb = Sb + trainimgs * np.dot(J - mean, (J - mean).transpose())
+    i += trainimgs
+    for k in range(trainimgs):
+        xi = X[:,col]
+        Sw = Sw + np.dot(xi - J, (xi - J).transpose())
+        col += 1

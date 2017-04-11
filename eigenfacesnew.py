@@ -10,8 +10,8 @@ X = np.empty(shape=(rows*cols, totaltrainimgs), dtype='float64')
 colno = 0
 for face in range(faces):
     for k in range(trainimgs):
-        img = cv2.imread('C:/Users/pc/Documents/Batcave/att_faces/s'+str(face + 1) + '/' + str(k + 1) + '.pgm', 0)
-        # img = cv2.resize(img, (115, 115))
+        img = cv2.imread('C:/Users/pc/Documents/Batcave/att_faces/s'+str(face + 1) +
+            '/' + str(k + 1) + '.pgm', 0)
         imgvector = np.array(img, dtype='float64').flatten()
         X[:, colno] = imgvector[:]
         colno = colno + 1
@@ -26,11 +26,12 @@ egvecs.tolist()
 egvecs = [vecs for (vals, vecs) in sorted(zip(egvals, egvecs), reverse=True)]
 egvals = sorted(egvals, reverse=True)
 egvals = np.array(egvals)
-print egvecs.shape
+print(egvecs.shape)
 egvecs = np.array(egvecs).reshape(faces*trainimgs, faces*trainimgs)
 
 k = 88                 # 89,96 57,95 13,85
-print "FacesCount = ", faces, " TrainImgCount =", trainimgs," TestImgCount = ", testimgs," k = ", k
+print("FacesCount = ", faces, " TrainImgCount =", trainimgs, " TestImgCount = ",
+      testimgs, " k = ", k)
 egvals = egvals[:k]
 egvecs = np.dot(X, (egvecs[:k].transpose()))
 norm = np.linalg.norm(egvecs, axis=0)
@@ -54,7 +55,5 @@ def ans():
         print(str(1 + i / testimgs) + "   " + str(j))
         if j == 1 + i / testimgs:
             cnt += 1
-    print "Accuracy : " + str((cnt * 100) / (faces * testimgs)) + '%'
+    print("Accuracy : " + str((cnt * 100) / (faces * testimgs)) + '%')
 ans()
-print "edn"
-
